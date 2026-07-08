@@ -1,10 +1,13 @@
 const express = require("express");
 const taskRoutes = require("./routes/tasks");
 
+const logger = require("./middleware/logger");
+
 const app = express();
 const PORT = 3000;
 
 // Middleware
+app.use(logger);
 app.use(express.json());
 
 // Health route
