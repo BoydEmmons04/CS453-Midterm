@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const errorHandler = require("../middleware/errorHandler");
+const errorHandlerPatch = require("../middleware/errorHandlerPatch");
 
 // In-memory task storage
 let tasks = [
@@ -96,7 +97,7 @@ router.put("/:id", errorHandler, (req, res) => {
 });
 
 // PATCH /api/tasks/:id
-router.patch("/:id", (req, res) => {
+router.patch("/:id", errorHandlerPatch, (req, res) => {
     // find the task to update
     const task = tasks.find(t => t.id === req.params.id);
 
