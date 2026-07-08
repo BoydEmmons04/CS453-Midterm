@@ -1,12 +1,13 @@
 const express = require("express");
 const taskRoutes = require("./routes/tasks");
 
+// define the logger path
 const logger = require("./middleware/logger");
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// Middleware used by all routes
 app.use(logger);
 app.use(express.json());
 

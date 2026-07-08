@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
     // finds the task to return
     const task = tasks.find(t => t.id === req.params.id);
 
-    // If it doesnt exist return error
+    // If it doesnt exist return error 404
     if (!task) {
         return res.status(404).json({ error: "Task not found" });
     }
@@ -46,7 +46,7 @@ router.post("/", errorHandler, (req, res) => {
         });
     }
 
-    // Define the structure of the new task
+    // Create a new task object with a unique ID
     const newTask = {
         id: String(nextId++),
         title,
@@ -66,7 +66,7 @@ router.put("/:id", errorHandler, (req, res) => {
     // locate the task to replace
     const index = tasks.findIndex(t => t.id === req.params.id);
 
-    // If it doesnt exist, error
+    // If it doesnt exist, error 404
     if (index === -1) {
         return res.status(404).json({ error: "Task not found" });
     }
@@ -128,10 +128,10 @@ router.delete("/:id", (req, res) => {
         return res.status(404).json({ error: "Task not found" });
     }
 
-    // remove the tasks using splice
+    // remove the task using splice
     tasks.splice(index, 1);
 
-    // return 204
+    // return 204 success
     res.sendStatus(204);
 });
 
