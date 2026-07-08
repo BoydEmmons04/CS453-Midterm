@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const errorHandler = require("../middleware/errorHandler");
 
 // In-memory task storage
 let tasks = [
@@ -33,7 +34,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST /api/tasks
-router.post("/", (req, res) => {
+router.post("/", errorHandler, (req, res) => {
     // validate the body
     const { title, course, completed } = req.body;
 
@@ -60,7 +61,7 @@ router.post("/", (req, res) => {
 });
 
 // PUT /api/tasks/:id
-router.put("/:id", (req, res) => {
+router.put("/:id", errorHandler, (req, res) => {
     // locate the task to replace
     const index = tasks.findIndex(t => t.id === req.params.id);
 
