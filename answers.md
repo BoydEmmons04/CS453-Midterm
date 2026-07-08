@@ -68,3 +68,20 @@
     "completed": false
 }
 ```
+
+# PART 4
+
+### Why did we implement these as middleware instead of inside the tasks or server
+* Because they perform work before the route handler. They are also used among multiple different routes and processes. The separation allows it to be used for multiple without excessive code in the server and tasks code.
+
+# PART 7
+
+### 1. Explain the difference between an Express route implementation and an OpenAPI specification.
+* Express route implementation contains the acutal server side code that processes requests and performs validation. The OpenAPI specification however, describes how the clients should interact with the server including available endpoints, formats, and error codes.
+
+### 2. Give two examples of how code and OpenAPI documentation can drift apart.
+* A developer might change a route such as renaming a request field or endpoint and does not update the OpenAPI spec
+* The code begins returning new status codes or repsonse formats but the documentation still describes old behavior
+
+### 3. Explain why inaccurate API documentation can cause problems for client developers.
+* Inaccurate API documentation can cause client developers to send requests with the wrong URL, or parameters which can cause errors. It also makes it difficult to correcly handle responses and errors which can directly impact development time and cost.
